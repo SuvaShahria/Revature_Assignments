@@ -58,5 +58,14 @@ public class Employee extends Person{
 		return "Employee [designation=" + designation + ", salary=" + salary + ", permenantAddress=" + permenantAddress + ", presentAddress=" + presentAddress
 				+ ", getId()=" + getId() + ", getName()=" + getName() + "]";
 	}
+	@Override
+	public boolean equals(Object o) {
+		boolean b=false;
+		Employee e2=(Employee)o;
+		if(this.designation==e2.designation) {
+			b=true;
+		}
+		return b;
+	}
 	
 }

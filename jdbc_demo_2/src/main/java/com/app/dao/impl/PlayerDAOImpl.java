@@ -63,14 +63,35 @@ public class PlayerDAOImpl implements PlayerDAO {
 
 	@Override
 	public int updatePlayer(int id, String city) {
-		
-		String sql="update player set city=? where id=?";
-		return 0;
+		int result = 0;
+		try(Connection connection=MySqlConnection.getConnection()){
+		String sql="update player set city=? where id = ?";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.setInt(2, id);
+		preparedStatement.setString(1, city);
+		preparedStatement.executeUpdate();
+		preparedStatement.close();
+		System.out.println("Updated Player");
+		result = 1;
+		}catch(Exception e) {
+			System.out.println(e);
+		}
+		return result;
 	}
 
 	@Override
 	public void deletePlayer(int id) {
 		String sql="delete from player where id=?";
+		try(Connection connection=MySqlConnection.getConnection()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			System.out.println("Deleted Player" );
+		}catch(Exception e){
+			System.out.println(e);
+			
+		}
 		
 	}
 }

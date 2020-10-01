@@ -26,6 +26,10 @@ public class PlayerMain {
 		for(Player p:playersList) {
 			System.out.println(p);
 		}
+		
+		
+		//dao.updatePlayer(1, "CrossvilleTN");
+		//dao.deletePlayer(4);
 	}
 
 }

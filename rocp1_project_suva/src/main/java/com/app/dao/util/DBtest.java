@@ -1,15 +1,12 @@
-package com.jdbc.hello;
-
+package com.app.dao.util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-public class HelloJdbc {
+public class DBtest {
 
 	public static void main(String[] args) {
-
 		Connection connection = null;
 		try {
 			// Step - 1 - Load Driver
@@ -25,7 +22,7 @@ public class HelloJdbc {
 			
 			//Step - 3 - Create Statement
 			Statement statement=connection.createStatement();
-			String sql="select id,name,age,teamName,gender,city from player";
+			String sql="select role_id from roles";
 			System.out.println("Statement Created");
 			
 			//Step - 4 - Execute Query
@@ -34,15 +31,9 @@ public class HelloJdbc {
 			
 			//Step - 5 - Process Results
 			while(resultSet.next()) {
-				System.out.print("Id :  "+resultSet.getInt("id"));
-				System.out.print(" Name :  "+resultSet.getString("name"));
-				System.out.print(" Age :  "+resultSet.getInt("age"));
-				System.out.print(" Gender :  "+resultSet.getString("gender"));
-				System.out.print(" City :  "+resultSet.getString("city"));
-				System.out.println(" TeamName :  "+resultSet.getString("teamName"));
+				System.out.println("Id :  "+resultSet.getInt("role_id"));
+
 			}
-			
-			//statement.executeUpdate("INSERT INTO player (id, name, age, city, gender, teamName)"+"VALUES (12, 'Malcolm', 18, 'Hallowdark', 'M', 'Hawks')");
 			System.out.println("Results Processed");
 			
 		} catch (ClassNotFoundException e) {
@@ -58,7 +49,7 @@ public class HelloJdbc {
 				System.out.println(e);
 			}
 		}
+
 	}
 
 }
-//Recreate the same and try doing Insert to the player table using Statement object only
